@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"github.com/prioarief/golang-rest-api-design-pattern/configs"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	configs.Database()
+
 }
