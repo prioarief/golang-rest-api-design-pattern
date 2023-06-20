@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql-go:
+    image: mysql
+    restart: always
+    container_name: mysql-go
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - TZ=Asia/Jakarta
+      # - MYSQL_SQL_MODE=""
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      # - ./mysql/custom.cnf:/etc/mysql/conf.d/my-custom.cnf
+    ports:
+      - 3309:3306
+    command: --sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+    # command: --server-id=1 --log_bin
+  api:
+    image: go-app
+    restart: always
+    container_name: api
+    environment:
+      - APP_PORT=8080
+      - DB_HOST=localhost
+      - DB_PORT=3309
+      - DB_USER=root
+      - DB_NAME=golang
+      - DB_PASSWORD=password
+
+    ports:
+      - 8080:8080

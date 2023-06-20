@@ -16,7 +16,6 @@ func Router(db *gorm.DB) *gin.Engine {
 		c.JSON(http.StatusOK, gin.H{"status": "OK"})
 	})
 
-	// Create repository and controller instances
 	todoRepository := repositories.NewTodoRepository(db)
 	todoController := controllers.NewTodoController(todoRepository)
 
