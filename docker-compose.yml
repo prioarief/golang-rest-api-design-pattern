@@ -6,6 +6,7 @@ services:
     container_name: mysql-go
     environment:
       - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=golang
       - TZ=Asia/Jakarta
       # - MYSQL_SQL_MODE=""
     volumes:
@@ -17,12 +18,12 @@ services:
     # command: --server-id=1 --log_bin
   api:
     image: go-app
-    restart: always
+    restart: on-failure
     container_name: api
     environment:
       - APP_PORT=8080
-      - DB_HOST=localhost
-      - DB_PORT=3309
+      - DB_HOST=mysql-go
+      - DB_PORT=3306
       - DB_USER=root
       - DB_NAME=golang
       - DB_PASSWORD=password

@@ -16,7 +16,7 @@ func Database() *gorm.DB {
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
 
-	// url := "root:password@tcp(localhost:3306)/golang"
+	// url := "user:password@tcp(host:port)/database"
 	url := dbUsername + ":" + dbPassword + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName
 	println(url)
 
