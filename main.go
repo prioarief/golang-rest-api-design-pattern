@@ -4,7 +4,6 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/prioarief/golang-rest-api-design-pattern/configs"
 	"github.com/prioarief/golang-rest-api-design-pattern/routes"
 )
 
@@ -15,8 +14,7 @@ func main() {
 		panic("Failed to load .env file")
 	}
 
-	db := configs.Database()
-	r := routes.Router(db)
+	r := routes.Router()
 
 	appPort := os.Getenv("APP_PORT")
 

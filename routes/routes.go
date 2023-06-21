@@ -4,27 +4,18 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/prioarief/golang-rest-api-design-pattern/controllers"
-	"github.com/prioarief/golang-rest-api-design-pattern/repositories"
-	"gorm.io/gorm"
 )
 
-func Router(db *gorm.DB) *gin.Engine {
+func Router() *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/check-health", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"status": "OK"})
 	})
 
-	todoRepository := repositories.NewTodoRepository(db)
-	todoController := controllers.NewTodoController(todoRepository)
-
 	v1 := r.Group("/api/v1")
 	{
-		todos := v1.Group("/todos")
-		{
-			todos.GET("/", todoController.GetAll)
-		}
+		TodoRoutes(v1)
 	}
 
 	return r

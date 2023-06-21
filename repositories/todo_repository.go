@@ -25,3 +25,13 @@ func (tr *TodoRepository) GetAll() ([]models.Todo, error) {
 
 	return todos, nil
 }
+
+func (tr *TodoRepository) GetDetail(id string) (*models.Todo, error) {
+	var todo models.Todo
+
+	if err := tr.db.First(&todo, "id = ?", id).Error; err != nil {
+		return nil, err
+	}
+
+	return &todo, nil
+}

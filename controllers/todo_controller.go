@@ -40,3 +40,14 @@ func (tc *TodoController) GetAll(c *gin.Context) {
 
 	c.JSON(http.StatusOK, todos)
 }
+func (tc *TodoController) GetDetail(c *gin.Context) {
+	id := c.Param("id")
+
+	todo, err := tc.todoRepository.GetDetail(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, todo)
+}
