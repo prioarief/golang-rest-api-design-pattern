@@ -17,5 +17,9 @@ func TodoRoutes(r *gin.RouterGroup) {
 	{
 		todos.GET("/", todoController.GetAll)
 		todos.GET("/:id", todoController.GetDetail)
+
+		todos.POST("/", todoController.Create)
+		todos.DELETE("/:id", todoController.Delete)
+		todos.PUT("/:id", todoController.Update)
 	}
 }

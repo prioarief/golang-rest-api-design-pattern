@@ -18,7 +18,7 @@ func Database() *gorm.DB {
 
 	// url := "user:password@tcp(host:port)/database"
 	url := dbUsername + ":" + dbPassword + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName
-	println(url)
+	// println(url)
 
 	db, err := gorm.Open(mysql.Open(url), &gorm.Config{})
 	if err != nil {

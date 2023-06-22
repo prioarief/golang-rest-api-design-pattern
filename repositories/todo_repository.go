@@ -35,3 +35,13 @@ func (tr *TodoRepository) GetDetail(id string) (*models.Todo, error) {
 
 	return &todo, nil
 }
+
+func (tr *TodoRepository) Delete(id string) error {
+	var todo models.Todo
+
+	return tr.db.Delete(&todo, "id = ?", id).Error
+}
+
+func (tr *TodoRepository) Update(todo *models.Todo) error {
+	return tr.db.Save(&todo).Error
+}
